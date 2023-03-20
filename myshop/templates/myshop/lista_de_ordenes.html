@@ -1,0 +1,35 @@
+{% extends 'myshop/plantilla.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    Ordenes
+{% endblock %}
+
+{% block content %}
+    <div>
+        <table class="table is-fullwidth">
+            <h1>Ordenes</h1>
+            <thead>
+                <tr>
+                    <td>Orden id</td>
+                    <td>Fecha de creación</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for orden in ordenes %}
+                    <tr>
+                        <td>
+                            {{orden.id}}
+                        </td>
+                        <td>
+                            {{orden.date_created}}
+                        </td>
+                        
+                    </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

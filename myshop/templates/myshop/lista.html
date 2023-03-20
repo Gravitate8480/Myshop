@@ -1,0 +1,50 @@
+{% extends 'myshop/plantilla.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    Productos
+{% endblock %}
+
+{% block content %}
+    <div>
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Precio</td>
+                    <td>Stock</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in productos %}
+                    <tr>
+                        <td>
+                            {{product.name}}
+                        </td>
+                        <td>
+                            {{product.price|intcomma|floatformat:2 }}
+                        </td>
+                        <td>
+                            {{product.stock}}
+                        </td>
+                        <td>
+                            <a class="button is-success" href="{% url 'editar' product.id %}">Editar</a>
+                            <a class="button is-success" href="{% url 'consultar' product.id %}">Consultar</a>
+
+                            <button class="button is-danger" href="{% url 'borrar_producto' product.id %}">Eliminar</button>
+
+                            <form action="{% url 'agregar_producto' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <input type="hidden" name="order_id" value="{{ order_id }}">
+                                <button type="submit" class="button is-success">Agregar a carrito</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

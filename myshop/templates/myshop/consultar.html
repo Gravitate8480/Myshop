@@ -1,0 +1,41 @@
+{% extends 'myshop/plantilla.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    Consultar
+{% endblock %}
+
+{% block content %}
+    <div>
+
+        <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                {{producto.name}}
+              </p>
+              <button class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <p>Descripción:</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti fugiat dolor laboriosam odit culpa. Cupiditate aut est dolorum, at ullam non dicta voluptas sapiente facere perspiciatis doloremque amet hic voluptatibus?</p>
+                <p>Precio: {{producto.price}}</p>
+                <p>Stock: {{producto.stock}}</p>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="{% url 'editar' producto.id %}"class="card-footer-item"> Editar </a>
+              <a href="{% url 'borrar_producto' producto.id%}" class="card-footer-item"> Borrar </a>
+              <a href="#" class="card-footer-item"> Ordenar</a>
+            </footer>
+          </div>
+
+
+        
+    </div>
+{% endblock %}
